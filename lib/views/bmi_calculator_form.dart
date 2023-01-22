@@ -8,6 +8,8 @@ class BMICalculatorForm extends StatefulWidget {
 }
 
 class BMICalculatorFormState extends State<BMICalculatorForm> {
+  final _formKey = GlobalKey<FormState>();
+
   String? height;
   String? weight;
 
@@ -22,11 +24,23 @@ class BMICalculatorFormState extends State<BMICalculatorForm> {
       return 'Please input valid number';
     }
 
-    if (value.length > 3 && num.parse(value) >= 200) {
+    if (value.length > 3 || num.parse(value) > 200) {
       return 'Max 200';
     }
 
     return null;
+  }
+
+  void handleSubmit() {
+    var isValid = _formKey.currentState!.validate();
+
+    if (isValid) {
+      _formKey.currentState!.reset();
+      setState(() {
+        height = '';
+        weight = '';
+      });
+    }
   }
 
   @override
@@ -49,17 +63,36 @@ class BMICalculatorFormState extends State<BMICalculatorForm> {
           border: OutlineInputBorder()),
     );
 
-    return Row(
+    var submitButton = Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Expanded(
-            child: Column(
-          children: [heightTextField],
-        )),
-        Expanded(
-            child: Column(
-          children: [weightTextField],
-        ))
+        ElevatedButton(
+            onPressed: handleSubmit,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Text(
+                  'Calculate',
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Icon(
+                  Icons.send,
+                  size: 20,
+                )
+              ],
+            ))
       ],
     );
+
+    return Padding(
+        padding: const EdgeInsets.all(20),
+        child: Form(
+            key: _formKey,
+            child: Column(
+              children: [heightTextField, weightTextField, submitButton],
+            )));
   }
 }

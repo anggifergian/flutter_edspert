@@ -7,7 +7,7 @@ class JPHList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
+    var futureBuilder = FutureBuilder(
       future: JPHService().getPosts(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
@@ -27,6 +27,11 @@ class JPHList extends StatelessWidget {
 
         return const Center(child: CircularProgressIndicator());
       },
+    );
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Home')),
+      body: futureBuilder,
     );
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 import 'package:flutter_edspert/components/splash_screen.dart';
 import 'package:flutter_edspert/configs/environment.dart';
+import 'package:flutter_edspert/configs/theme.dart';
 
 Future<void> main(List<String> args) async {
   await dotenv.load(fileName: Environment.fileName);
@@ -17,9 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: lightTheme(context),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }

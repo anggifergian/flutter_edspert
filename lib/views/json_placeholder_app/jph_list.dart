@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_edspert/services/jph_service.dart';
-import 'package:flutter_edspert/views/jph_detail.dart';
+import 'package:flutter_edspert/views/json_placeholder_app/jph_detail.dart';
 
 class JPHList extends StatelessWidget {
   const JPHList({super.key});

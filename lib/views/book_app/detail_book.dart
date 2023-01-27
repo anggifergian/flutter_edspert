@@ -7,7 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter_edspert/configs/environment.dart';
-import 'package:flutter_edspert/models/book.dart';
+import 'package:flutter_edspert/models/book_app/book.dart';
 import 'package:flutter_edspert/views/book_app/related_book.dart';
 import 'package:flutter_edspert/views/book_app/preview_book_image.dart';
 

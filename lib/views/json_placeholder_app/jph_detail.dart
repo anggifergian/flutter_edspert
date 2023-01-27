@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_edspert/models/post.dart';
+import 'package:flutter_edspert/models/json_placeholder_app/post.dart';
 
 class JPHDetail extends StatelessWidget {
   final Post post;

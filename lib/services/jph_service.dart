@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter_edspert/configs/environment.dart';
-import 'package:flutter_edspert/models/post.dart';
+import 'package:flutter_edspert/models/json_placeholder_app/post.dart';
 
 class JPHService {
   final String endpoint = '${Environment.jsonPlaceHolderUrl}/posts';

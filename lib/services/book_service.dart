@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:flutter_edspert/models/book.dart';
+import 'package:flutter_edspert/models/book_app/book.dart';
 import 'package:flutter_edspert/configs/environment.dart';
 
 class BookService {

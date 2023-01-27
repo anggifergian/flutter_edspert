@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter_edspert/configs/constant.dart';
 import 'package:flutter_edspert/configs/environment.dart';
-import 'package:flutter_edspert/models/book.dart';
+import 'package:flutter_edspert/models/book_app/book.dart';
 import 'package:flutter_edspert/views/book_app/detail_book.dart';
 
 class BookHome extends StatefulWidget {

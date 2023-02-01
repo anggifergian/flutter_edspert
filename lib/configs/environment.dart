@@ -6,4 +6,6 @@ class Environment {
   static String get apiUrl => dotenv.env['API_URL']!;
   static String get jsonPlaceHolderUrl => dotenv.env['JPH_URL']!;
   static String get itBookApi => dotenv.env['ITBOOK_API']!;
+  static String get edspertApi => dotenv.env['EDSPERT_API']!;
+  static String get edspertKey => dotenv.env['EDSPERT_KEY']!;
 }

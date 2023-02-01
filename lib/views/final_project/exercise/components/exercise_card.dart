@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_edspert/configs/constant.dart';
-import 'package:flutter_edspert/models/final_project_app/exercise.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:flutter_edspert/configs/constant.dart';
+import 'package:flutter_edspert/models/final_project_app/exercise.dart';
 
 class ExerciseCard extends StatelessWidget {
   final Exercise? exercise;

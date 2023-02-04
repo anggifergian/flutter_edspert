@@ -1,12 +1,13 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
+
 import 'package:flutter_edspert/configs/environment.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioClient {
-  late Dio _dio;
+  Dio get dio => _dio();
 
-  DioClient() {
+  Dio _dio() {
     final options = BaseOptions(
         baseUrl: Environment.edspertApi,
         headers: {
@@ -15,18 +16,12 @@ class DioClient {
         },
         responseType: ResponseType.json);
 
-    _dio = Dio(options);
-  }
+    var dio = Dio(options);
 
-  Future get(String url, Map<String, dynamic> queryParams) async {
-    try {
-      final response = await _dio.get(url, queryParameters: queryParams);
+    dio.interceptors.add(PrettyDioLogger(
+      compact: true,
+    ));
 
-      return response.data;
-    } on DioError catch (e) {
-      if (e.response?.data != null) throw Exception(e.response?.data);
-
-      throw Exception(e.message);
-    }
+    return dio;
   }
 }

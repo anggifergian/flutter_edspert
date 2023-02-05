@@ -1,5 +1,6 @@
 import 'package:flutter_edspert/configs/dio_client.dart';
 import 'package:flutter_edspert/models/final_project_app/course.dart';
+import 'package:flutter_edspert/models/final_project_app/exercise.dart';
 
 class CourseService {
   final String _userEmail = 'testerngbayu@gmail.com';
@@ -14,6 +15,17 @@ class CourseService {
       return CourseListResponse.fromJson(response.data).data;
     } else {
       throw 'Unable to retrieve course data.';
+    }
+  }
+
+  Future<List<Exercise>?> getExercises(String courseId) async {
+    var path = '/exercise/data_exercise?course_id=$courseId&user_email=$_userEmail';
+    var response = await dioClient.dio.get(path);
+
+    if (response.statusCode == 200) {
+      return ExerciseListResponse.fromJson(response.data).data;
+    } else {
+      throw 'Unable to retrieve exercise data.';
     }
   }
 }

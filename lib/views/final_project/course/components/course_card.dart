@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_edspert/views/final_project/exercise/exercise_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -15,7 +16,6 @@ class CourseCard extends StatelessWidget {
     }
 
     var count = course!.jumlahDone / course!.jumlahMateri;
-    debugPrint("${course?.courseName}: $count");
 
     if (count.isNaN) {
       return 0;
@@ -27,7 +27,13 @@ class CourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => print("Hello World..."),
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ExerciseList(
+                    courseName: course!.courseName,
+                    courseID: course!.courseId,
+                  ))),
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)), color: Colors.white),

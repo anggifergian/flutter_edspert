@@ -41,20 +41,20 @@ class ExerciseCard extends StatelessWidget {
       decoration: const BoxDecoration(color: Color(0xFFF3F7F8), borderRadius: BorderRadius.all(Radius.circular(14))),
       child: SvgPicture.asset(
         'assets/images/ic_note.svg',
-        height: 22,
+        height: 24,
       ),
     );
   }
 
   Widget _buildExerciseName() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 4, top: 10),
+      padding: const EdgeInsets.only(bottom: 4, top: 12),
       child: Text(
         "${exercise!.exerciseTitle}",
         style: GoogleFonts.poppins(
           height: 1.3,
           fontWeight: FontWeight.w700,
-          fontSize: 14,
+          fontSize: 15,
           color: Colors.black87,
         ),
       ),

@@ -5,6 +5,7 @@ import 'package:flutter_edspert/services/final_project/course_service.dart';
 
 class ExerciseProvider with ChangeNotifier {
   bool isLoading = false;
+  bool isEmpty = false;
   List<Exercise>? exercises = [];
 
   getAll(String courseId) async {
@@ -14,9 +15,17 @@ class ExerciseProvider with ChangeNotifier {
     try {
       var response = await CourseService().getExercises(courseId);
 
-      if (response != null) {
+      if (response == null) {
+        exercises = [];
+        isEmpty = true;
         isLoading = false;
+        notifyListeners();
+      }
+
+      if (response != null) {
         exercises = response;
+        isEmpty = false;
+        isLoading = false;
         notifyListeners();
       }
     } catch (err) {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_edspert/configs/theme.dart';
 
+import 'package:flutter_edspert/configs/theme.dart';
 import 'package:flutter_edspert/providers/exercise_provider.dart';
+import 'package:flutter_edspert/views/final_project/exercise/components/exercise_empty.dart';
 import 'package:flutter_edspert/views/final_project/exercise/components/exercise_card.dart';
 import 'package:flutter_edspert/views/final_project/exercise/components/exercise_card_skeleton.dart';
 
@@ -43,29 +44,59 @@ class ExerciseListState extends State<ExerciseList> {
         appBar: _buildAppBar(context),
         body: Container(
           padding: const EdgeInsets.all(20),
-          child: Provider.of<ExerciseProvider>(context).isLoading == true
-              ? GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: crossAxisCount,
-                    childAspectRatio: childAspectRatio,
-                    mainAxisSpacing: mainAxisSpacing,
-                    crossAxisSpacing: crossAxisSpacing,
-                  ),
-                  itemCount: 3,
-                  itemBuilder: (context, index) => const ExerciseCardSkeleton())
-              : GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: crossAxisCount,
-                    childAspectRatio: childAspectRatio,
-                    mainAxisSpacing: mainAxisSpacing,
-                    crossAxisSpacing: crossAxisSpacing,
-                  ),
-                  itemCount: Provider.of<ExerciseProvider>(context).exercises!.length,
-                  itemBuilder: (context, index) => ExerciseCard(
-                        exercise: Provider.of<ExerciseProvider>(context).exercises![index],
-                      )),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildTitle(),
+              _buildGridView(context),
+            ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildTitle() {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Text(
+        'Pilih Paket Soal',
+        style: GoogleFonts.poppins(fontSize: 16, color: Colors.black87, fontWeight: FontWeight.w700),
+      ),
+    );
+  }
+
+  Widget _buildGridView(BuildContext context) {
+    if (Provider.of<ExerciseProvider>(context).isLoading == true) {
+      return Expanded(
+        child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              childAspectRatio: childAspectRatio,
+              mainAxisSpacing: mainAxisSpacing,
+              crossAxisSpacing: crossAxisSpacing,
+            ),
+            itemCount: 5,
+            itemBuilder: (context, index) => const ExerciseCardSkeleton()),
+      );
+    }
+
+    if (Provider.of<ExerciseProvider>(context).isEmpty == true) {
+      return const Expanded(child: ExerciseEmpty());
+    }
+
+    return Expanded(
+      child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: crossAxisCount,
+            childAspectRatio: childAspectRatio,
+            mainAxisSpacing: mainAxisSpacing,
+            crossAxisSpacing: crossAxisSpacing,
+          ),
+          itemCount: Provider.of<ExerciseProvider>(context).exercises!.length,
+          itemBuilder: (context, index) => ExerciseCard(
+                exercise: Provider.of<ExerciseProvider>(context).exercises![index],
+              )),
     );
   }
 

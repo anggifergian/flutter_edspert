@@ -27,3 +27,23 @@ class Exercise {
     jumlahDone = json['jumlah_done'];
   }
 }
+
+class ExerciseListResponse {
+  int? status;
+  String? message;
+  List<Exercise>? data;
+
+  ExerciseListResponse(this.status, this.message, this.data);
+
+  ExerciseListResponse.fromJson(Map json) {
+    status = json['status'];
+    message = json['message'];
+
+    if (json['data'] != null) {
+      data = [];
+      json['data'].forEach((item) {
+        data!.add(Exercise.fromJson(item));
+      });
+    }
+  }
+}

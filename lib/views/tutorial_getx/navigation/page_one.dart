@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import 'package:flutter_edspert/views/tutorial_getx/page_two.dart';
+import 'package:flutter_edspert/views/tutorial_getx/navigation/page_two.dart';
 
 class PageOne extends StatelessWidget {
   const PageOne({super.key});

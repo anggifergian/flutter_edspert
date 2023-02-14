@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_edspert/views/tutorial_getx/page_one.dart';
 import 'package:get/get.dart';
+
+import 'package:flutter_edspert/views/tutorial_getx/navigation/page_one.dart';
 
 class PageThree extends StatelessWidget {
   const PageThree({super.key});

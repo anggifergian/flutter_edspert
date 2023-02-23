@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_edspert/views/playground/state_notifier/state_notifier.dart';
+import 'package:flutter_edspert/views/playground/flutter_state_notifier/state_notifier.dart';
 import 'package:flutter_state_notifier/flutter_state_notifier.dart';
 
 class PlaygroundStateNotifier extends StatelessWidget {

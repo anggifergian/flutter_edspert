@@ -16,7 +16,7 @@ class ExerciseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => print('Hello World'),
+      onTap: () {},
       child: Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.centerLeft,

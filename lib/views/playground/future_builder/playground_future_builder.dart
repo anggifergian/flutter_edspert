@@ -27,6 +27,9 @@ class _PlaygroundFutureBuilderState extends State<PlaygroundFutureBuilder> {
       body: FutureBuilder(
         future: getData(),
         builder: (context, snapshot) {
+          // Need to check at least three different properties (1) connectionState, (2) data, (3) error.
+          // The problem is Dart doesn't have proper for sealed unions and this is what leads
+          // to all the if-else statements inside the builder.
           if (snapshot.connectionState == ConnectionState.done) {
             debugPrint('[1] Connection Done');
             debugPrint("Data=${snapshot.data}");

@@ -2,8 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/todo_model.dart';
 
-class TodosNotifier extends StateNotifier<List<Todo>> {
-  TodosNotifier() : super([]);
+class TodosController extends StateNotifier<List<Todo>> {
+  TodosController() : super([]);
 
   void addTodo(Todo todo) {
     // State in StateNotifier is immutable, we are not allowed to do `state.add(todo)`.
@@ -41,6 +41,6 @@ class TodosNotifier extends StateNotifier<List<Todo>> {
 
 // We are using StateNotifierProvider to allow the UI to interact with
 // our TodoNotifier class.
-final todosProvider = StateNotifierProvider<TodosNotifier, List<Todo>>((ref) {
-  return TodosNotifier();
+final todosProvider = StateNotifierProvider<TodosController, List<Todo>>((ref) {
+  return TodosController();
 });

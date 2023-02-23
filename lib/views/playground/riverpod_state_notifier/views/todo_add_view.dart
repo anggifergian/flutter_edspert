@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:flutter_edspert/views/playground/todo/models/todo_model.dart';
-import 'package:flutter_edspert/views/playground/todo/controllers/todos_notifier.dart';
+import 'package:flutter_edspert/views/playground/riverpod_state_notifier/models/todo_model.dart';
+import 'package:flutter_edspert/views/playground/riverpod_state_notifier/controllers/todos_notifier.dart';
 
 class TodoAddView extends ConsumerWidget {
   const TodoAddView({super.key});

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:flutter_edspert/views/playground/todo/controllers/todos_notifier.dart';
+import 'package:flutter_edspert/views/playground/riverpod_state_notifier/controllers/todos_notifier.dart';
 
 class TodoEditView extends ConsumerWidget {
   const TodoEditView({super.key, required this.todoID});

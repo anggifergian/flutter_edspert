@@ -8,7 +8,7 @@ class CourseCardSkeleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
           border: Border.all(width: 0.3, style: BorderStyle.solid, color: secondaryColor10LightTheme),
           color: Colors.white,

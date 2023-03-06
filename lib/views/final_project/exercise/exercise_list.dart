@@ -9,10 +9,10 @@ import 'package:flutter_edspert/views/final_project/exercise/components/exercise
 import 'package:flutter_edspert/views/final_project/exercise/components/exercise_card_skeleton.dart';
 
 class ExerciseList extends StatefulWidget {
-  final String courseName;
-  final String courseID;
+  final String? courseName;
+  final String? courseID;
 
-  const ExerciseList({super.key, required this.courseName, required this.courseID});
+  const ExerciseList({super.key, this.courseName, this.courseID});
 
   @override
   State<StatefulWidget> createState() => ExerciseListState();
@@ -33,7 +33,7 @@ class ExerciseListState extends State<ExerciseList> {
   }
 
   _fetchExercise() {
-    Provider.of<ExerciseProvider>(context, listen: false).getAll(widget.courseID);
+    Provider.of<ExerciseProvider>(context, listen: false).getAll(widget.courseID!);
   }
 
   @override
@@ -42,8 +42,8 @@ class ExerciseListState extends State<ExerciseList> {
       theme: lightTheme(context),
       home: Scaffold(
         appBar: _buildAppBar(context),
-        body: Container(
-          padding: const EdgeInsets.all(20),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -104,7 +104,7 @@ class ExerciseListState extends State<ExerciseList> {
     return AppBar(
         centerTitle: false,
         title: Text(
-          widget.courseName,
+          widget.courseName!,
           style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700),
         ),
         titleSpacing: 0.0,

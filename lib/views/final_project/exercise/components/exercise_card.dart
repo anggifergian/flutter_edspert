@@ -8,10 +8,25 @@ import 'package:flutter_edspert/models/final_project_app/exercise.dart';
 class ExerciseCard extends StatelessWidget {
   final Exercise? exercise;
 
-  const ExerciseCard({
+  ExerciseCard({
     super.key,
     required this.exercise,
   });
+
+  final cardStyle = BoxDecoration(
+    color: Colors.white,
+    borderRadius: const BorderRadius.all(Radius.circular(10)),
+    border: Border.all(
+      width: 0.3,
+      style: BorderStyle.solid,
+      color: secondaryColor10LightTheme,
+    ),
+  );
+
+  final iconStyle = const BoxDecoration(
+    color: Color(0xFFF3F7F8),
+    borderRadius: BorderRadius.all(Radius.circular(14)),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +35,7 @@ class ExerciseCard extends StatelessWidget {
       child: Container(
           padding: const EdgeInsets.all(20),
           alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-              border: Border.all(width: 0.3, style: BorderStyle.solid, color: secondaryColor10LightTheme),
-              color: Colors.white,
-              borderRadius: const BorderRadius.all(Radius.circular(10))),
+          decoration: cardStyle,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -38,7 +50,7 @@ class ExerciseCard extends StatelessWidget {
   Container _buildExerciseIcon() {
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration: const BoxDecoration(color: Color(0xFFF3F7F8), borderRadius: BorderRadius.all(Radius.circular(14))),
+      decoration: iconStyle,
       child: SvgPicture.asset(
         'assets/images/ic_note.svg',
         height: 24,
@@ -64,7 +76,11 @@ class ExerciseCard extends StatelessWidget {
   Widget _buildExerciseTotal() {
     return Text(
       "${exercise!.jumlahDone}/${exercise!.jumlahSoal} Soal",
-      style: const TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: Color(0xFF8E8E8E)),
+      style: const TextStyle(
+        fontWeight: FontWeight.w400,
+        fontSize: 14,
+        color: Color(0xFF8E8E8E),
+      ),
     );
   }
 }

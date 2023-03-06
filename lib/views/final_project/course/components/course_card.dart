@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_edspert/views/final_project/exercise/exercise_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter_edspert/models/final_project_app/course.dart';
+import 'package:flutter_edspert/views/final_project/exercise/exercise_list.dart';
 
 class CourseCard extends StatelessWidget {
   final Course? course;
@@ -27,16 +27,21 @@ class CourseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => ExerciseList(
-                    courseName: course!.courseName,
-                    courseID: course!.courseId,
-                  ))),
+      onTap: () {
+        final route = MaterialPageRoute(
+          builder: (context) => ExerciseList(
+            courseName: course!.courseName,
+            courseID: course!.courseId,
+          ),
+        );
+        Navigator.push(context, route);
+      },
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-        decoration: const BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(10)), color: Colors.white),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+          color: Colors.white,
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -44,7 +49,11 @@ class CourseCard extends StatelessWidget {
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [_buildCourseName(), _buildCourseCompletion(), _buildCourseProgressBar()],
+                children: [
+                  _buildCourseName(),
+                  _buildCourseCompletion(),
+                  _buildCourseProgressBar(),
+                ],
               ),
             )
           ],
@@ -59,7 +68,10 @@ class CourseCard extends StatelessWidget {
       height: 70,
       margin: const EdgeInsets.only(right: 14),
       padding: const EdgeInsets.all(14),
-      decoration: const BoxDecoration(color: Color(0xFFF3F7F8), borderRadius: BorderRadius.all(Radius.circular(14))),
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        color: Color(0xFFF3F7F8),
+      ),
       child: CachedNetworkImage(
         imageUrl: course!.urlCover,
         fit: BoxFit.contain,
@@ -92,14 +104,15 @@ class CourseCard extends StatelessWidget {
 
   Widget _buildCourseProgressBar() {
     return Container(
-        margin: const EdgeInsets.only(top: 12),
-        height: 8,
-        child: ClipRRect(
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-          child: LinearProgressIndicator(
-            value: getPercent(),
-            backgroundColor: const Color(0xFFF0F0F0),
-          ),
-        ));
+      margin: const EdgeInsets.only(top: 12),
+      height: 8,
+      child: ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        child: LinearProgressIndicator(
+          value: getPercent(),
+          backgroundColor: const Color(0xFFF0F0F0),
+        ),
+      ),
+    );
   }
 }

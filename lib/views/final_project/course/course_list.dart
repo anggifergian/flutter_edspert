@@ -16,7 +16,7 @@ class CourseList extends StatefulWidget {
 
 class CourseListState extends State<CourseList> {
   void _fetchCourse() {
-    Provider.of<CourseProvider>(context, listen: false).getAll();
+    Provider.of<CourseProvider>(context, listen: false).getAll(context: context);
   }
 
   @override
@@ -32,40 +32,43 @@ class CourseListState extends State<CourseList> {
     return MaterialApp(
       theme: lightTheme(context),
       home: Scaffold(
-          appBar: _buildAppBar(context),
-          body: Container(
-            padding: const EdgeInsets.all(10),
-            child: Provider.of<CourseProvider>(context).isLoading
-                ? ListView.builder(
-                    itemCount: 3,
-                    itemBuilder: (context, index) => (Container(
-                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                          child: const CourseCardSkeleton(),
-                        )))
-                : ListView.builder(
-                    itemCount: Provider.of<CourseProvider>(context).course!.length,
-                    itemBuilder: (context, index) => Container(
-                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
-                          child: CourseCard(course: Provider.of<CourseProvider>(context).course![index]),
-                        )),
-          )),
+        appBar: _buildAppBar(context),
+        body: Container(
+          child: Provider.of<CourseProvider>(context).isLoading
+              ? ListView.builder(
+                  itemCount: 3,
+                  itemBuilder: (context, index) => (Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                    child: const CourseCardSkeleton(),
+                  )),
+                )
+              : ListView.builder(
+                  itemCount: Provider.of<CourseProvider>(context).course!.length,
+                  itemBuilder: (context, index) => Container(
+                    padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                    child: CourseCard(course: Provider.of<CourseProvider>(context).course![index]),
+                  ),
+                ),
+        ),
+      ),
     );
   }
 
   AppBar _buildAppBar(BuildContext context) {
     return AppBar(
-        centerTitle: false,
-        title: Text(
-          'Pilih Pelajaran',
-          style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700),
+      centerTitle: false,
+      title: Text(
+        'Pilih Pelajaran',
+        style: GoogleFonts.poppins(fontSize: 18, fontWeight: FontWeight.w700),
+      ),
+      titleSpacing: 0.0,
+      leading: IconButton(
+        icon: const Icon(
+          Icons.arrow_back,
+          color: Colors.white,
         ),
-        titleSpacing: 0.0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ));
+        onPressed: () => Navigator.of(context).pop(),
+      ),
+    );
   }
 }
